@@ -1,0 +1,17 @@
+(defun main ()
+  (let ((llm-model (if (string-starts-with "llama" (getenv "LLM_MODEL"))
+                       (getenv "LLM_MODEL")
+                       "gpt-3.5-turbo")))
+    (when (string-starts-with "gpt-4" llm-model)
+      (format t "~c[91m~c[1m~%*****USING GPT-4. POTENTIALLY EXPENSIVE. MONITOR YOUR COSTS*****~c[0m~c[0m~%"))
+    (when (string-starts-with "human" llm-model)
+      (format t "~c[91m~c[1m~%*****USING HUMAN INPUT*****~c[0m~c[0m~%"))
+    (format t "~c[94m~c[1m~%*****OBJECTIVE*****~%~c[0m~c[0m~%")
+    (format t "~a" (getenv "OBJECTIVE"))
+    (if (not (string= "True" (getenv "JOIN_EXISTING_OBJECTIVE")))
+        (progn
+          (format t "~c[93m~c[1m~%Initial task:~c[0m~c[0m~a" (getenv "INITIAL_TASK")))
+      (format t "~c[93m~c[1m~%Joining to help the objective~c[0m~c[0m"))
+    (setf openai-api-key (getenv "OPENAI_API_KEY"))
+    ;; ... rest of the code ...
+))

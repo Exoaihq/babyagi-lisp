@@ -1,0 +1,7 @@
+(defun user-input-await (prompt)
+  (format t "~c[94m~c[1m~%> COPY FOLLOWING TEXT TO CHATBOT~%~c[0m~c[0m" #\ESC #\ESC)
+  (format t "~a" prompt)
+  (format t "~c[91m~c[1m~% AFTER PASTING, PRESS: (ENTER), (CTRL+Z), (ENTER) TO FINISH~%~c[0m~c[0m" #\ESC #\ESC)
+  (format t "~c[96m~c[1m~%> PASTE YOUR RESPONSE:~%~c[0m~c[0m" #\ESC #\ESC)
+  (let ((input-text (read)))
+    (string-trim " " input-text)))
